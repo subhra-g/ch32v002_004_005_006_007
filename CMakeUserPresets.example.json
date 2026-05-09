@@ -1,0 +1,29 @@
+{
+	"version": 8,
+	"cmakeMinimumRequired": {
+		"major": 3,
+		"minor": 28,
+		"patch": 0
+	},
+	"configurePresets":[
+		{
+			"name": "ch32v006",
+			"displayName": "CH32V006 micro-controller family",
+			"description": "CH32V006 family of controller with RISC-V GCC from MounRiver Studio.",
+			"hidden": false,
+			"toolchainFile": "cmake/toolchain-riscv-none-elf-gcc.cmake",
+			"inherits": "ch32v006-base",
+			"cacheVariables": {
+				"toolchain_path": {
+					"type": "FILEPATH",
+					"value": "$env{USERPROFILE}/dev/tools/WCH-RISC-V_Embedded-GCC12/bin/"
+				}
+			},
+			"condition": {
+				"type": "equals",
+				"lhs": "${hostSystemName}",
+				"rhs": "Windows"
+			}
+		}
+	]
+}

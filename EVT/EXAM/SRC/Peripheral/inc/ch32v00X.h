@@ -86,7 +86,7 @@ typedef enum IRQn
 
 #include <stdint.h>
 #include <core_riscv.h>
-#include <system_ch32v00X.h>
+//#include <system_ch32v00X.h> // SubhraG: Only required by debug.h/.c. So, removing dependency on application.
 
 /* Standard Peripheral Library old definitions (maintained for legacy purpose) */
 #define HSI_Value             HSI_VALUE
