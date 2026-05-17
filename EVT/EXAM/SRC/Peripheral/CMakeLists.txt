@@ -1,9 +1,7 @@
 cmake_minimum_required(VERSION 3.23)
 
-set(lib_name ch32v00x.peripheral)
-
+set(lib_name peripheral)
 add_library(${lib_name} STATIC)
-
 # HAL Peripherals
 target_sources(${lib_name}
 	PUBLIC
@@ -67,23 +65,21 @@ target_include_directories(${lib_name}
 	PUBLIC
 	$<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/inc>
 	$<INSTALL_INTERFACE:include>
-	$<INSTALL_INTERFACE:include/ch32v003/peripheral>
+	# TODO: Peripheral headers directly includes other headers directly from SDK. Following is WORKAROUND just for that.
+	$<INSTALL_INTERFACE:include/ch32v00x/peripheral>
 )
-
 # Processor Arch related
 target_compile_options(${lib_name} PUBLIC -mno-save-restore)
-
 # Optimization. Intentionally kept private.
 target_compile_options(${lib_name} PRIVATE -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections -fno-common)
 target_compile_options(${lib_name} PRIVATE -msmall-data-limit=8)
+# Debugging and Optimization
 # target_compile_options(${lib_name} PRIVATE -Os)
-
-# Debugging
 # target_compile_options(${lib_name} PRIVATE $<$<CONFIG:Debug>:-g>)
-
 # Linker
 target_link_options(${lib_name} PUBLIC -mno-save-restore)
 #target_link_options(${lib_name} PUBLIC -Xlinker --gc-sections)
-target_link_libraries(${lib_name} PUBLIC hal::core)
+target_link_libraries(${lib_name} PUBLIC ch32v00x::core)
 
-add_library(hal::peripheral ALIAS ${lib_name})
+set_target_properties(${lib_name} PROPERTIES FOLDER "${PROJECT_NAME}")
+add_library(ch32v00x::peripheral ALIAS ${lib_name})

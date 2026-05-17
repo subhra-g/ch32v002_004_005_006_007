@@ -57,14 +57,14 @@ install_dir
 #]]
 
 install(
-	TARGETS ch32v00x.core ch32v00x.peripheral ch32v00x.startupLib ch32v00x.startup ch32v00x.ld ch32v00x.debug-print.sdi
+	TARGETS core peripheral startupLib startup ld debug-print.sdi
 		${install_debug_print_target}
 	EXPORT ch32v00xhal_Targets
 	# INCLUDES DESTINATION include/ch32v008 # For include files => ${CMAKE_INSTALL_INCLUDEDIR}
 	#	PUBLIC_HEADER DESTINATION include/ch32v008
 	# HEADER DESTINATION  include/ch32v008
 	# INTERFACE_SOURCES DESTINATION include/ch32v008
-	ARCHIVE DESTINATION lib/ch32v00x      # For static libs   => ${CMAKE_INSTALL_LIBDIR}
+	ARCHIVE DESTINATION lib/ch32v006      # For static libs   => ${CMAKE_INSTALL_LIBDIR}
 	LIBRARY DESTINATION lib               # For dyamic libs   => ${CMAKE_INSTALL_LIBDIR}
 	RUNTIME DESTINATION bin               # For executables   => ${CMAKE_INSTALL_BINDIR}
 )
@@ -83,7 +83,7 @@ configure_package_config_file(
 
 install(EXPORT ch32v00xhal_Targets
 	FILE ch32v00xhalTargets.cmake
-	NAMESPACE ch32v00xhal::
+	NAMESPACE ch32v00x::
 	DESTINATION ${CMAKE_INSTALL_DATAROOTDIR}/cmake
 )
 
@@ -95,6 +95,7 @@ install(
 
 # REVIEW: Is there no way to do it automatically, like the PUBLIC sources?
 install(FILES ${PROJECT_SOURCE_DIR}/EVT/EXAM/SRC/core/core_riscv.h DESTINATION include/ch32v00x/core)
+install(FILES ${PROJECT_SOURCE_DIR}/EVT/EXAM/SRC/debug/debug.h DESTINATION include/ch32v00x/debug)
 # Following copies 'inc' directory in 'peripheral' creating 'peripheral/inc' path
 # install(DIRECTORY ${PROJECT_SOURCE_DIR}/EVT/EXAM/SRC/Peripheral/inc DESTINATION include/ch32v00x/peripheral)
 list(APPEND peripheral_inc
@@ -123,3 +124,4 @@ install(FILES ${PROJECT_SOURCE_DIR}/EVT/EXAM/SRC/Startup/startup_ch32v00X.S DEST
 #       relevant section, comment/remove irrelevant sections). But for now, it is fine since I don't
 #       have any of the other MCUs.
 install(FILES ${PROJECT_SOURCE_DIR}/EVT/EXAM/SRC/Ld/Link.ld DESTINATION ld/ch32v00x RENAME ch32v006.ld)
+install(FILES ${PROJECT_SOURCE_DIR}/Targets.md DESTINATION docs RENAME ch32v002_004_005_006_007-Targets.md)

@@ -6,6 +6,10 @@ CONFIGURATIONS:
 		CH32V00x_D6 : CH32V203F6-CH32V203F8-CH32V203G6-CH32V203G8-CH32V203K8-CH32V203C6-CH32V203C8-CH32V203G8
 		If none defined, SDK will set the default one. The default in SDK can be controlled by commenting/uncommenting line.
 - HSE_VALUE:
+- INTSYSCR_INEST: Interrupt nesting
+  Values:
+    - INTSYSCR_INEST_NoEN : Interrupt nesting disabled
+	  - INTSYSCR_INEST_EN   : Interrupt nesting enable
 
 Usage instruction:
 Using CMake,
@@ -18,7 +22,7 @@ Using CMake,
       EXCLUDE_FROM_ALL
       SYSTEM
     )
-    Fetchcontent_MakeAvailable(ch32v003)
+    Fetchcontent_MakeAvailable(ch32v00x)
 3. The main application needs to have a function `SystemInit` defined. This function is expected to be
 	 called from the startup file. The function can be defined in the main application or in a target
 	 which is linked with the main application. The function is expected to initialize the system clock
@@ -54,7 +58,7 @@ endif()
 add_subdirectory(EVT/EXAM)
 
 # Don't setup installation when the project is not build standalone(e.g. `FetchContent`).
-if(PROJECT_IS_TOP_LEVEL) #(USE_INSTALL_WIP)
+if(PROJECT_IS_TOP_LEVEL)
 	message(STATUS "CH32V002/004/005/006/007 HAL is being build as top project")
 	include(cmake/install.cmake)
 endif()
