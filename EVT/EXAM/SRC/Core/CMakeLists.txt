@@ -25,7 +25,7 @@ target_compile_options(${lib} PUBLIC -msave-restore)
 
 # Optimization. Intentionally kept private.
 target_compile_options(${lib} PRIVATE -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections -fno-common)
-target_compile_options(${lib} PRIVATE -msmall-data-limit=0) # -msave-restore -fmax-errors=20
+target_compile_options(${lib} PUBLIC -msmall-data-limit=8) # -msave-restore -fmax-errors=20
 
 # Debugging and Optimization
 # target_compile_options(${lib} PRIVATE -Os)

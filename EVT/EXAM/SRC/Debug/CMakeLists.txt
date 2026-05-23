@@ -40,7 +40,7 @@ foreach(uart compile_opt IN ZIP_LISTS uart_options compile_options)
 	target_compile_options(${lib} PUBLIC -mno-save-restore)
 	# Optimization
 	target_compile_options(${lib} PRIVATE -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections -fno-common)
-	target_compile_options(${lib} PRIVATE -msmall-data-limit=8)
+	target_compile_options(${lib} PUBLIC -msmall-data-limit=8)
 	# Debugging and optimization
 	# target_compile_options(${lib} PRIVATE -Os)
 	# target_compile_options(${lib} PRIVATE $<$<CONFIG:Debug>:-g>)
@@ -90,7 +90,7 @@ target_compile_definitions(${lib} PUBLIC SDI_PRINT=SDI_PR_OPEN)
 target_compile_options(${lib} PUBLIC -msave-restore)
 # Optimization
 target_compile_options(${lib} PRIVATE -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections -fno-common)
-target_compile_options(${lib} PRIVATE -msmall-data-limit=8)
+target_compile_options(${lib} PUBLIC -msmall-data-limit=8)
 # Debugging and Optimization
 # target_compile_options(${lib} PRIVATE -Os)
 # target_compile_options(${lib} PRIVATE $<$<CONFIG:Debug>:-g>)

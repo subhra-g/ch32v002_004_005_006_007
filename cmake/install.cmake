@@ -124,4 +124,4 @@ install(FILES ${PROJECT_SOURCE_DIR}/EVT/EXAM/SRC/Startup/startup_ch32v00X.S DEST
 #       relevant section, comment/remove irrelevant sections). But for now, it is fine since I don't
 #       have any of the other MCUs.
 install(FILES ${PROJECT_SOURCE_DIR}/EVT/EXAM/SRC/Ld/Link.ld DESTINATION ld/ch32v00x RENAME ch32v006.ld)
-install(FILES ${PROJECT_SOURCE_DIR}/Targets.md DESTINATION docs RENAME ch32v002_004_005_006_007-Targets.md)
+install(FILES ${PROJECT_SOURCE_DIR}/Targets.md DESTINATION docs RENAME ch32v006-Targets.md)

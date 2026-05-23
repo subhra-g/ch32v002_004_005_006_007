@@ -72,7 +72,7 @@ target_include_directories(${lib_name}
 target_compile_options(${lib_name} PUBLIC -mno-save-restore)
 # Optimization. Intentionally kept private.
 target_compile_options(${lib_name} PRIVATE -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections -fno-common)
-target_compile_options(${lib_name} PRIVATE -msmall-data-limit=8)
+target_compile_options(${lib_name} PUBLIC -msmall-data-limit=8)
 # Debugging and Optimization
 # target_compile_options(${lib_name} PRIVATE -Os)
 # target_compile_options(${lib_name} PRIVATE $<$<CONFIG:Debug>:-g>)

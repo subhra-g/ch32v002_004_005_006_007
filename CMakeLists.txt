@@ -39,14 +39,6 @@ project("ch32v00xhal" VERSION 1.4.0 # From Git commit comment.
 		HOMEPAGE_URL "https://github.com/openwch/ch32v002_004_005_006_007"
 		LANGUAGES C CXX ASM)
 
-#if(NOT DEFINED MCU)
-#	message(FATAL_ERROR "MCU not defined to build CH32V20x HAL")
-#endif()
-
-# if(NOT TARGET ch32v00x_config)
-# 	message(FATAL_ERROR "ch32v00x_config target is required. This target should have include path which holds ch32v00x_conf.h and system_ch32v00x.h.")
-# endif()
-
 # Don't include MCU specific options when the project is not build standalone(e.g. `FetchContent`).
 # In that case Toolchain, MCU etc. should be provided by or inherited from the parent project.
 if(PROJECT_IS_TOP_LEVEL)
