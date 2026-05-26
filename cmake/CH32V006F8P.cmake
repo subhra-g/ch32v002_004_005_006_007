@@ -7,7 +7,7 @@ if(CMAKE_COMPILER_IS_GNUCC)
 	#set(arch_flags "-march=rv32ec_zmmul_xw -mabi=ilp32e -mcmodel=medany") # ToDo: Taken from MRS. Only works with riscv32-wch-elf toolchain. Needs to be tested.
 	set(arch_flags "-march=rv32ec -mabi=ilp32e -mcmodel=medany")
 	# Compile definition for the processor family.
-	set(compile_def CH32V00X CH32V006F8P)
+	set(compile_def CH32V00X CH32V006)
 	set(CMAKE_ASM_FLAGS_INIT "${arch_flags}")
 	set(CMAKE_C_FLAGS_INIT "${arch_flags}")
 	set(CMAKE_CXX_FLAGS_INIT "${arch_flags} -fno-exceptions -fno-unwind-tables -fno-rtti") # Disable RTTI and exception handling.

@@ -5,60 +5,60 @@ add_library(${lib_name} STATIC)
 # HAL Peripherals
 target_sources(${lib_name}
 	PUBLIC
-	$<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/inc/ch32v00x.h>
-	$<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/inc/ch32v00x_adc.h>
-	$<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/inc/ch32v00x_dbgmcu.h>
-	$<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/inc/ch32v00x_dma.h>
-	$<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/inc/ch32v00x_exti.h>
-	$<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/inc/ch32v00x_flash.h>
-	$<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/inc/ch32v00x_gpio.h>
-	$<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/inc/ch32v00x_i2c.h>
-	$<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/inc/ch32v00x_iwdg.h>
-	$<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/inc/ch32v00x_misc.h>
-	$<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/inc/ch32v00x_opa.h>
-	$<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/inc/ch32v00x_pwr.h>
-	$<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/inc/ch32v00x_rcc.h>
-	$<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/inc/ch32v00x_spi.h>
-	$<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/inc/ch32v00x_tim.h>
-	$<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/inc/ch32v00x_usart.h>
-	$<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/inc/ch32v00x_wwdg.h>
+	$<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/inc/ch32v00X.h>
+	$<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/inc/ch32v00X_adc.h>
+	$<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/inc/ch32v00X_dbgmcu.h>
+	$<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/inc/ch32v00X_dma.h>
+	$<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/inc/ch32v00X_exti.h>
+	$<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/inc/ch32v00X_flash.h>
+	$<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/inc/ch32v00X_gpio.h>
+	$<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/inc/ch32v00X_i2c.h>
+	$<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/inc/ch32v00X_iwdg.h>
+	$<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/inc/ch32v00X_misc.h>
+	$<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/inc/ch32v00X_opa.h>
+	$<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/inc/ch32v00X_pwr.h>
+	$<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/inc/ch32v00X_rcc.h>
+	$<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/inc/ch32v00X_spi.h>
+	$<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/inc/ch32v00X_tim.h>
+	$<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/inc/ch32v00X_usart.h>
+	$<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/inc/ch32v00X_wwdg.h>
 	$<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/inc/ch32v00X_conf.h>
 	# Install location for following files needs to be in include/Peripheral
-	$<INSTALL_INTERFACE:include/ch32v00x/Peripheral/ch32v00x.h>
-	$<INSTALL_INTERFACE:include/ch32v00x/Peripheral/ch32v00x_adc.h>
-	$<INSTALL_INTERFACE:include/ch32v00x/Peripheral/ch32v00x_dbgmcu.h>
-	$<INSTALL_INTERFACE:include/ch32v00x/Peripheral/ch32v00x_dma.h>
-	$<INSTALL_INTERFACE:include/ch32v00x/Peripheral/ch32v00x_exti.h>
-	$<INSTALL_INTERFACE:include/ch32v00x/Peripheral/ch32v00x_flash.h>
-	$<INSTALL_INTERFACE:include/ch32v00x/Peripheral/ch32v00x_gpio.h>
-	$<INSTALL_INTERFACE:include/ch32v00x/Peripheral/ch32v00x_i2c.h>
-	$<INSTALL_INTERFACE:include/ch32v00x/Peripheral/ch32v00x_iwdg.h>
-	$<INSTALL_INTERFACE:include/ch32v00x/Peripheral/ch32v00x_misc.h>
-	$<INSTALL_INTERFACE:include/ch32v00x/Peripheral/ch32v00x_opa.h>
-	$<INSTALL_INTERFACE:include/ch32v00x/Peripheral/ch32v00x_pwr.h>
-	$<INSTALL_INTERFACE:include/ch32v00x/Peripheral/ch32v00x_rcc.h>
-	$<INSTALL_INTERFACE:include/ch32v00x/Peripheral/ch32v00x_spi.h>
-	$<INSTALL_INTERFACE:include/ch32v00x/Peripheral/ch32v00x_tim.h>
-	$<INSTALL_INTERFACE:include/ch32v00x/Peripheral/ch32v00x_usart.h>
-	$<INSTALL_INTERFACE:include/ch32v00x/Peripheral/ch32v00x_wwdg.h>
+	$<INSTALL_INTERFACE:include/ch32v00x/Peripheral/ch32v00X.h>
+	$<INSTALL_INTERFACE:include/ch32v00x/Peripheral/ch32v00X_adc.h>
+	$<INSTALL_INTERFACE:include/ch32v00x/Peripheral/ch32v00X_dbgmcu.h>
+	$<INSTALL_INTERFACE:include/ch32v00x/Peripheral/ch32v00X_dma.h>
+	$<INSTALL_INTERFACE:include/ch32v00x/Peripheral/ch32v00X_exti.h>
+	$<INSTALL_INTERFACE:include/ch32v00x/Peripheral/ch32v00X_flash.h>
+	$<INSTALL_INTERFACE:include/ch32v00x/Peripheral/ch32v00X_gpio.h>
+	$<INSTALL_INTERFACE:include/ch32v00x/Peripheral/ch32v00X_i2c.h>
+	$<INSTALL_INTERFACE:include/ch32v00x/Peripheral/ch32v00X_iwdg.h>
+	$<INSTALL_INTERFACE:include/ch32v00x/Peripheral/ch32v00X_misc.h>
+	$<INSTALL_INTERFACE:include/ch32v00x/Peripheral/ch32v00X_opa.h>
+	$<INSTALL_INTERFACE:include/ch32v00x/Peripheral/ch32v00X_pwr.h>
+	$<INSTALL_INTERFACE:include/ch32v00x/Peripheral/ch32v00X_rcc.h>
+	$<INSTALL_INTERFACE:include/ch32v00x/Peripheral/ch32v00X_spi.h>
+	$<INSTALL_INTERFACE:include/ch32v00x/Peripheral/ch32v00X_tim.h>
+	$<INSTALL_INTERFACE:include/ch32v00x/Peripheral/ch32v00X_usart.h>
+	$<INSTALL_INTERFACE:include/ch32v00x/Peripheral/ch32v00X_wwdg.h>
 	$<INSTALL_INTERFACE:include/ch32v00x/Peripheral/ch32v00X_conf.h>
 	PRIVATE
-	"${CMAKE_CURRENT_SOURCE_DIR}/src/ch32v00x_adc.c"
-	"${CMAKE_CURRENT_SOURCE_DIR}/src/ch32v00x_dbgmcu.c"
-	"${CMAKE_CURRENT_SOURCE_DIR}/src/ch32v00x_dma.c"
-	"${CMAKE_CURRENT_SOURCE_DIR}/src/ch32v00x_exti.c"
-	"${CMAKE_CURRENT_SOURCE_DIR}/src/ch32v00x_flash.c"
-	"${CMAKE_CURRENT_SOURCE_DIR}/src/ch32v00x_gpio.c"
-	"${CMAKE_CURRENT_SOURCE_DIR}/src/ch32v00x_i2c.c"
-	"${CMAKE_CURRENT_SOURCE_DIR}/src/ch32v00x_iwdg.c"
-	"${CMAKE_CURRENT_SOURCE_DIR}/src/ch32v00x_misc.c"
-	"${CMAKE_CURRENT_SOURCE_DIR}/src/ch32v00x_opa.c"
-	"${CMAKE_CURRENT_SOURCE_DIR}/src/ch32v00x_pwr.c"
-	"${CMAKE_CURRENT_SOURCE_DIR}/src/ch32v00x_rcc.c"
-	"${CMAKE_CURRENT_SOURCE_DIR}/src/ch32v00x_spi.c"
-	"${CMAKE_CURRENT_SOURCE_DIR}/src/ch32v00x_tim.c"
-	"${CMAKE_CURRENT_SOURCE_DIR}/src/ch32v00x_usart.c"
-	"${CMAKE_CURRENT_SOURCE_DIR}/src/ch32v00x_wwdg.c"
+	"${CMAKE_CURRENT_SOURCE_DIR}/src/ch32v00X_adc.c"
+	"${CMAKE_CURRENT_SOURCE_DIR}/src/ch32v00X_dbgmcu.c"
+	"${CMAKE_CURRENT_SOURCE_DIR}/src/ch32v00X_dma.c"
+	"${CMAKE_CURRENT_SOURCE_DIR}/src/ch32v00X_exti.c"
+	"${CMAKE_CURRENT_SOURCE_DIR}/src/ch32v00X_flash.c"
+	"${CMAKE_CURRENT_SOURCE_DIR}/src/ch32v00X_gpio.c"
+	"${CMAKE_CURRENT_SOURCE_DIR}/src/ch32v00X_i2c.c"
+	"${CMAKE_CURRENT_SOURCE_DIR}/src/ch32v00X_iwdg.c"
+	"${CMAKE_CURRENT_SOURCE_DIR}/src/ch32v00X_misc.c"
+	"${CMAKE_CURRENT_SOURCE_DIR}/src/ch32v00X_opa.c"
+	"${CMAKE_CURRENT_SOURCE_DIR}/src/ch32v00X_pwr.c"
+	"${CMAKE_CURRENT_SOURCE_DIR}/src/ch32v00X_rcc.c"
+	"${CMAKE_CURRENT_SOURCE_DIR}/src/ch32v00X_spi.c"
+	"${CMAKE_CURRENT_SOURCE_DIR}/src/ch32v00X_tim.c"
+	"${CMAKE_CURRENT_SOURCE_DIR}/src/ch32v00X_usart.c"
+	"${CMAKE_CURRENT_SOURCE_DIR}/src/ch32v00X_wwdg.c"
 )
 
 target_include_directories(${lib_name}
