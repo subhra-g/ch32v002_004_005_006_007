@@ -13,7 +13,7 @@ include(GNUInstallDirs)
 # message(STATUS "DEBUG: CMAKE_INSTALL_DATAROOTDIR - ${CMAKE_INSTALL_DATAROOTDIR}")
 
 #[[
-Installtion planning:
+installation planning:
 install_dir
   |
   +-- include

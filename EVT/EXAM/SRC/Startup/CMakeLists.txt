@@ -27,32 +27,13 @@ target_link_options(${lib} PUBLIC -mno-save-restore)
 set_target_properties(${lib} PROPERTIES FOLDER "${PROJECT_NAME}")
 add_library(ch32v00x::${lib} ALIAS ${lib})
 
-#[=====[
-# NOTE: Usually linker script is tightly integrated with startup script. So integrating both
-#       together.
-# Linker script
-target_link_options(${lib}
-	INTERFACE
-	$<BUILD_INTERFACE:"-T${CMAKE_CURRENT_SOURCE_DIR}/../Ld/Link.ld">
-	$<INSTALL_INTERFACE:-TLink.ld> # This Link.ld needs to installed in 'lib/ch32v00x'
-)
-
-target_link_directories(${lib}
-	INTERFACE
-	$<INSTALL_INTERFACE:lib/ch32v00x/ch32v006> # ToDo: Hard coded ch32v006. Should be MCU specific.
-)
-
-add_library(hal::startup ALIAS ${lib})
-#]=====]
-
 # An interface target if app directly wants to use the script.
 set(lib startup)
 add_library(${lib} INTERFACE)
 target_sources(${lib}
 	INTERFACE
 	$<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/startup_ch32v00X.S>
-	$<INSTALL_INTERFACE:startup/ch32v00x/ch32v006.S> # This Link.ld needs to installed in 'lib/ch32v00x'
+	$<INSTALL_INTERFACE:startup/ch32v00x/ch32v006.S> # This startup script needs to installed in 'startup/ch32v00x'
 )
-set_target_properties(${lib} PROPERTIES FOLDER "${PROJECT_NAME}/Debug")
 set_target_properties(${lib} PROPERTIES FOLDER "${PROJECT_NAME}")
 add_library(ch32v00x::${lib} ALIAS ${lib})
