@@ -36,6 +36,7 @@ foreach(uart compile_opt IN ZIP_LISTS uart_options compile_options)
 		$<INSTALL_INTERFACE:include>
 		$<INSTALL_INTERFACE:include/ch32v00x/debug>
 	)
+	target_compile_definitions(${lib} PUBLIC ${MCU} ${MCU_FAMILY})
 	target_compile_definitions(${lib} PUBLIC DEBUG=${compile_opt})
 	target_compile_options(${lib} PUBLIC -mno-save-restore)
 	# Optimization
@@ -86,6 +87,7 @@ target_include_directories(${lib}
 	$<INSTALL_INTERFACE:include/ch32v00x/debug>
 )
 # Processor Arch related
+target_compile_definitions(${lib} PUBLIC ${MCU} ${MCU_FAMILY})
 target_compile_definitions(${lib} PUBLIC SDI_PRINT=SDI_PR_OPEN)
 target_compile_options(${lib} PUBLIC -msave-restore)
 # Optimization

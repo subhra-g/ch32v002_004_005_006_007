@@ -9,6 +9,7 @@ target_sources(${lib}
 	"${CMAKE_CURRENT_SOURCE_DIR}/startup_ch32v00X.S"
 )
 
+target_compile_definitions(${lib} PUBLIC ${MCU} ${MCU_FAMILY})
 # Processor Arch related
 target_compile_options(${lib} PUBLIC -mno-save-restore)
 

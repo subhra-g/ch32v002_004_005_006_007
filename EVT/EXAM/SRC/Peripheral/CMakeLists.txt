@@ -68,6 +68,7 @@ target_include_directories(${lib_name}
 	# TODO: Peripheral headers directly includes other headers directly from SDK. Following is WORKAROUND just for that.
 	$<INSTALL_INTERFACE:include/ch32v00x/peripheral>
 )
+target_compile_definitions(${lib_name} PUBLIC ${MCU} ${MCU_FAMILY})
 # Processor Arch related
 target_compile_options(${lib_name} PUBLIC -mno-save-restore)
 # Optimization. Intentionally kept private.

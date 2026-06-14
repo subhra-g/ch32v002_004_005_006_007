@@ -11,11 +11,12 @@
 			"displayName": "Base configuration for CH32V006 micro-controller",
 			"description": "Base configuration for for CH32V006. Use this as base in User presets and override as required.",
 			"hidden": true,
-			"toolchainFile": "cmake/toolchain-riscv-none-elf-gcc.cmake",
+			"toolchainFile": "cmake/CH32V006.cmake",
 			"generator": "Ninja Multi-Config",
 			"binaryDir": "${sourceDir}/build/ch32v006",
 			"cacheVariables": {
 				"toolchain_path": "/Override/with/Path/To/RISC-V_GCC/bin/",
+				"MCU": "CH32V006F8",
 				"BUILD_EXAMPLES": false
 			}
 		}

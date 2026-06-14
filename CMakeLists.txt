@@ -1,9 +1,14 @@
 #[[
 CONFIGURATIONS:
 - MCU:
-		CH32V00x_D8W: CH32V208
-		CH32V00x_D8 : CH32V203RB
-		CH32V00x_D6 : CH32V203F6-CH32V203F8-CH32V203G6-CH32V203G8-CH32V203K8-CH32V203C6-CH32V203C8-CH32V203G8
+		CH32V006K8 (for CH32V006K8U7)
+		CH32V006E8 (for CH32V006E8R6 and CH32V006E8R7)
+		CH32V006F8 (for CH32V006F8U7 and CH32V006F8P7)
+    CH32V006F4 (for CH32V006F4U6)
+    CH32V006D8 (for CH32V006D8U7)
+    CH32V005E6 (for CH32V005E6R6)
+    CH32V005F6 (for CH32V005F6U6 and CH32V005F6P6)
+    CH32V005D6 (for CH32V005D6U6)
 		If none defined, SDK will set the default one. The default in SDK can be controlled by commenting/uncommenting line.
 - HSE_VALUE:
 - INTSYSCR_INEST: Interrupt nesting
@@ -41,10 +46,42 @@ project("ch32v00xhal" VERSION 1.4.0 # CH32V00X Standard Peripheral Library versi
 
 # Don't include MCU specific options when the project is not build standalone(e.g. `FetchContent`).
 # In that case Toolchain, MCU etc. should be provided by or inherited from the parent project.
-if(PROJECT_IS_TOP_LEVEL)
-	# ToDo: Need to accomodate other supported MCUs by this SDK.
-	include(cmake/CH32V006F8P.cmake)
+# if(PROJECT_IS_TOP_LEVEL)
+# 	# ToDo: Need to accomodate other supported MCUs by this SDK.
+# 	include(cmake/CH32V006F8P.cmake)
+# endif()
+
+set(supported_mcus CH32V006K8 CH32V006E8 CH32V006F8 CH32V006F4 CH32V006D8 CH32V005E6 CH32V005F6 CH32V005D6)
+set(MCU_FAMILY CH32V006)
+if(NOT DEFINED MCU)
+	set(MCU CH32V006F8)
+	message(WARNING "MCU not defined for CH32V00x HAL.\n"
+	                "Allowed MCUs are...\n"
+                  "    CH32V006K8 - For CH32V006K8U7\n"
+                  "    CH32V006E8 - For CH32V006E8R6 and CH32V006E8R7\n"
+                  "    CH32V006F8 - For CH32V006F8U7 and CH32V006F8P7\n"
+                  "    CH32V006F4 - For CH32V006F4U6\n"
+                  "    CH32V006D8 - For CH32V006D8U7\n"
+                  # "    CH32V005E6 - For CH32V005E6R6\n"
+                  # "    CH32V005F6 - For CH32V005F6U6 and CH32V005F6P6\n"
+                  # "    CH32V005D6 - For CH32V005D6U6\n"
+									"Assuming ${MCU}.\n")
+else()
+	string(TOUPPER ${MCU} MCU_UPPER)
+	if(NOT MCU_UPPER IN_LIST supported_mcus)
+		message(FATAL_ERROR "Invalid MCU ${MCU}. Use one of the following\n"
+                        "    CH32V006K8 - For CH32V006K8U7\n"
+                        "    CH32V006E8 - For CH32V006E8R6 and CH32V006E8R7\n"
+                        "    CH32V006F8 - For CH32V006F8U7 and CH32V006F8P7\n"
+                        "    CH32V006F4 - For CH32V006F4U6\n"
+                        "    CH32V006D8 - For CH32V006D8U7\n"
+                        # "    CH32V005E6 - For CH32V005E6R6\n"
+                        # "    CH32V005F6 - For CH32V005F6U6 and CH32V005F6P6\n"
+                        # "    CH32V005D6 - For CH32V005D6U6\n"
+                        )
+	endif()
 endif()
+message(STATUS "MCU (${MCU}) and family (${MCU_FAMILY}) will be added to compile definition.")
 
 # This is the manufacturer provided HAL.
 add_subdirectory(EVT/EXAM)
