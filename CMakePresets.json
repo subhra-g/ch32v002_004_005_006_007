@@ -19,6 +19,20 @@
 				"MCU": "CH32V006F8",
 				"BUILD_EXAMPLES": false
 			}
+		},
+		{
+			"name": "ch32v005-base",
+			"displayName": "Base configuration for CH32V005 micro-controller",
+			"description": "Base configuration for for CH32V005. Use this as base in User presets and override as required.",
+			"hidden": true,
+			"toolchainFile": "cmake/CH32V005.cmake",
+			"generator": "Ninja Multi-Config",
+			"binaryDir": "${sourceDir}/build/ch32v005",
+			"cacheVariables": {
+				"toolchain_path": "/Override/with/Path/To/RISC-V_GCC/bin/",
+				"MCU": "CH32V005F6",
+				"BUILD_EXAMPLES": false
+			}
 		}
 	]
 }
