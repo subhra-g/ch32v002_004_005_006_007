@@ -23,6 +23,8 @@ target_compile_options(${lib} PUBLIC -msmall-data-limit=8)
 
 # Linker options
 target_link_options(${lib} PUBLIC -mno-save-restore)
+# This is the startup. So, do not use standard system startup files when linking.
+target_link_options(${lib} PUBLIC -nostartfiles)
 #target_link_options(${lib} PUBLIC -Xlinker --gc-sections)
 
 set_target_properties(${lib} PROPERTIES FOLDER "${PROJECT_NAME}")
@@ -36,5 +38,7 @@ target_sources(${lib}
 	$<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/startup_ch32v00X.S>
 	$<INSTALL_INTERFACE:startup/ch32v00x/ch32v006.S> # This startup script needs to installed in 'startup/ch32v00x'
 )
+# This is the startup. So, do not use standard system startup files when linking.
+target_link_options(${lib} INTERFACE -nostartfiles)
 set_target_properties(${lib} PROPERTIES FOLDER "${PROJECT_NAME}")
 add_library(ch32v00x::${lib} ALIAS ${lib})
