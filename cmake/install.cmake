@@ -14,47 +14,45 @@ include(GNUInstallDirs)
 
 #[[
 installation planning:
-install_dir
+CMAKE_INSTALL_PREFIX/
   |
-  +-- include
+  +-- include/
   |   |
-  |   +-- ch32v00x
+  |   +-- ch32v00x/
   |       |
-  |       +-- core -> Contains headers from 'SRC/Core'
-  |       +-- peripheral -> Contains headers from 'SRC/Peripheral/inc'
+  |       +-- core/ -> Contains headers from 'SRC/Core'
+  |       +-- peripheral/ -> Contains headers from 'SRC/Peripheral/inc'
   |
-  +-- startup
+  +-- startup/
   |   |
-	|   +--ch32v00x
-  |      |
-  |      +-- ch32v002.S -> ch32v002 Startup file
-  |      +-- ch32v004.S -> ch32v004 Startup file
-  |      +-- ch32v005.S -> ch32v005 Startup file
-  |      +-- ch32v006.S -> ch32v006 Startup file
-  |      +-- ch32v007.S -> ch32v007 Startup file
+  |   +-- ch32v00x/
+  |       |
+  |       +-- ch32v002.S -> ch32v002 Startup file
+  |       +-- ch32v004.S -> ch32v004 Startup file
+  |       +-- ch32v005.S -> ch32v005 Startup file
+  |       +-- ch32v006.S -> ch32v006 Startup file
+  |       +-- ch32v007.S -> ch32v007 Startup file
   |
-  +-- lib
+  +-- lib/
   |   |
-  |   +-- ch32v002 -> Contains ch32v002 archives/static libs
-  |   +-- ch32v004 -> Contains ch32v004 archives/static libs
-  |   +-- ch32v005 -> Contains ch32v005 archives/static libs
-  |   +-- ch32v006 -> Contains ch32v006 archives/static libs
-  |   +-- ch32v007 -> Contains ch32v007 archives/static libs
+  |   +-- ch32v002/ -> Contains ch32v002 archives/static libs
+  |   +-- ch32v004/ -> Contains ch32v004 archives/static libs
+  |   +-- ch32v005/ -> Contains ch32v005 archives/static libs
+  |   +-- ch32v006/ -> Contains ch32v006 archives/static libs
+  |   +-- ch32v007/ -> Contains ch32v007 archives/static libs
   |
-  +-- ld
+  +-- ld/
   |   |
-	|   +--ch32v00x
-  |      |
-  |      +-- ch32v002.ld -> Contains ch32v002 linker script
-  |      +-- ch32v004.ld -> Contains ch32v004 linker script
-  |      +-- ch32v005.ld -> Contains ch32v005 linker script
-  |      +-- ch32v006.ld -> Contains ch32v006 linker script
-  |      +-- ch32v007.ld -> Contains ch32v007 linker script
+  |   +-- ch32v00x/
+  |       +-- ${_mcu_family_lower}.ld -> Linker script for the configured MCU family
   |
-  +-- share
+  +-- share/
       |
-      +-- cmake -> Contains cmake scripts. use this path for find_package
+      +-- PACKAGE_NAME/ -> Contains cmake scripts. use this path for find_package
 #]]
+
+string(TOLOWER "${MCU_FAMILY}" _mcu_family_lower)
+set(PACKAGE_NAME ${PROJECT_NAME}) # The package name will be used in find_package.
 
 install(
 	TARGETS core peripheral startupLib startup ld debug-print.sdi
@@ -64,33 +62,33 @@ install(
 	#	PUBLIC_HEADER DESTINATION include/ch32v008
 	# HEADER DESTINATION  include/ch32v008
 	# INTERFACE_SOURCES DESTINATION include/ch32v008
-	ARCHIVE DESTINATION lib/ch32v006      # For static libs   => ${CMAKE_INSTALL_LIBDIR}
+	ARCHIVE DESTINATION lib/${_mcu_family_lower}      # For static libs   => ${CMAKE_INSTALL_LIBDIR}
 	LIBRARY DESTINATION lib               # For dyamic libs   => ${CMAKE_INSTALL_LIBDIR}
 	RUNTIME DESTINATION bin               # For executables   => ${CMAKE_INSTALL_BINDIR}
 )
 include(CMakePackageConfigHelpers)
-write_basic_package_version_file("ch32v00xhalConfigVersion.cmake"
+write_basic_package_version_file("${PACKAGE_NAME}ConfigVersion.cmake"
 	VERSION ${PROJECT_VERSION}
 	COMPATIBILITY SameMajorVersion
 )
 
 configure_package_config_file(
 	"${PROJECT_SOURCE_DIR}/cmake/ch32v00xhalConfig.cmake.in"
-	"${PROJECT_BINARY_DIR}/ch32v00xhalConfig.cmake"
+	"${PROJECT_BINARY_DIR}/${PACKAGE_NAME}Config.cmake"
 	INSTALL_DESTINATION
-	${CMAKE_INSTALL_DATAROOTDIR}/cmake
+	${CMAKE_INSTALL_DATAROOTDIR}/${PACKAGE_NAME}
 )
 
 install(EXPORT ch32v00xhal_Targets
-	FILE ch32v00xhalTargets.cmake
+	FILE ${PACKAGE_NAME}Targets.cmake
 	NAMESPACE ch32v00x::
-	DESTINATION ${CMAKE_INSTALL_DATAROOTDIR}/cmake
+	DESTINATION ${CMAKE_INSTALL_DATAROOTDIR}/${PACKAGE_NAME}/${MCU_FAMILY}
 )
 
 install(
 	FILES "${PROJECT_BINARY_DIR}/ch32v00xhalConfig.cmake"
 	      "${PROJECT_BINARY_DIR}/ch32v00xhalConfigVersion.cmake"
-	DESTINATION ${CMAKE_INSTALL_DATAROOTDIR}/cmake
+	DESTINATION ${CMAKE_INSTALL_DATAROOTDIR}/${PACKAGE_NAME}
 )
 
 # REVIEW: Is there no way to do it automatically, like the PUBLIC sources?
@@ -119,9 +117,9 @@ list(APPEND peripheral_inc
 	${PROJECT_SOURCE_DIR}/EVT/EXAM/SRC/Peripheral/inc/ch32v00X_conf.h
 )
 install(FILES ${peripheral_inc} DESTINATION include/ch32v00x/peripheral)
-install(FILES ${PROJECT_SOURCE_DIR}/EVT/EXAM/SRC/Startup/startup_ch32v00X.S DESTINATION startup/ch32v00x RENAME ch32v006.S)
-# ToDo: CH32V006 is default in the linker script. For other MCUs, it needs to be processed (uncomment
-#       relevant section, comment/remove irrelevant sections). But for now, it is fine since I don't
-#       have any of the other MCUs.
-install(FILES ${PROJECT_SOURCE_DIR}/EVT/EXAM/SRC/Ld/Link.ld DESTINATION ld/ch32v00x RENAME ch32v006.ld)
-install(FILES ${PROJECT_SOURCE_DIR}/Targets.md DESTINATION docs RENAME ch32v006-Targets.md)
+install(FILES ${PROJECT_SOURCE_DIR}/EVT/EXAM/SRC/Startup/startup_ch32v00X.S DESTINATION startup/ch32v00x RENAME ${MCU_FAMILY}.S)
+install(FILES "${PROJECT_BINARY_DIR}/ld/${_mcu_family_lower}.ld"
+	DESTINATION ld/ch32v00x
+	RENAME "${_mcu_family_lower}.ld"
+)
+install(FILES ${PROJECT_SOURCE_DIR}/Targets.md DESTINATION docs RENAME ${MCU_FAMILY}-Targets.md)

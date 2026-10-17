@@ -1,6 +1,6 @@
 set(CMAKE_TRY_COMPILE_TARGET_TYPE STATIC_LIBRARY)
 
-set(TOOLCHAIN_TRIPLET riscv-none-elf)
+set(TOOLCHAIN_TRIPLET riscv-wch-elf)
 cmake_path(APPEND toolchain_path ${TOOLCHAIN_TRIPLET} OUTPUT_VARIABLE pathWithTriplet)
 
 if(NOT RISCV_ARCH)

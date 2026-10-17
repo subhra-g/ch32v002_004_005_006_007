@@ -9,7 +9,7 @@ target_sources(${lib}
 	"${CMAKE_CURRENT_SOURCE_DIR}/startup_ch32v00X.S"
 )
 
-target_compile_definitions(${lib} PUBLIC ${MCU} ${MCU_FAMILY})
+target_compile_definitions(${lib} PUBLIC ${MCU} ${MCU_FAMILY} CH32V00X)
 # Processor Arch related
 target_compile_options(${lib} PUBLIC -mno-save-restore)
 
@@ -36,7 +36,7 @@ add_library(${lib} INTERFACE)
 target_sources(${lib}
 	INTERFACE
 	$<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/startup_ch32v00X.S>
-	$<INSTALL_INTERFACE:startup/ch32v00x/ch32v006.S> # This startup script needs to installed in 'startup/ch32v00x'
+	$<INSTALL_INTERFACE:startup/ch32v00x/${MCU_FAMILY}.S> # This startup script needs to installed in 'startup/ch32v00x'
 )
 # This is the startup. So, do not use standard system startup files when linking.
 target_link_options(${lib} INTERFACE -nostartfiles)
